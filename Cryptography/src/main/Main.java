@@ -18,12 +18,11 @@ public class Main extends Application{
 		Main.primaryStage = primaryStage;
 		Main.primaryStage.setTitle("Cryptography App");
 		showMainView();
-		showLogin();
 	}
 
 	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/MainView.fxml"));
+		loader.setLocation(getClass().getResource("/MainWindow.fxml"));
 		mainLayout = loader.load();
 		Scene scene = new Scene (mainLayout,500,500);
 		primaryStage.setScene(scene);
