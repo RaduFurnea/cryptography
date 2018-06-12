@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="332.0" maxWidth="302.0" minHeight="177.0" minWidth="302.0" prefHeight="286.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.ui.KeysWindowController">
+<AnchorPane maxHeight="332.0" maxWidth="302.0" minHeight="177.0" minWidth="302.0" prefHeight="286.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.fx.KeysWindowController">
    <children>
       <Line endX="200.0" layoutX="101.0" layoutY="129.0" startX="-100.0" strokeWidth="0.2" />
       <Button fx:id="privatePath" layoutX="194.0" layoutY="17.0" mnemonicParsing="false" onAction="#onButtonClick" text="Choose Path" />
