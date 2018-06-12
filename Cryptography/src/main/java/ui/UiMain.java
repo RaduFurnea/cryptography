@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import main.java.Main;
 
-public class UiMain  extends Application {
+public class UiMain extends Application {
 	private static Stage primaryStage;
 	private static BorderPane mainLayout;
 
@@ -18,12 +18,11 @@ public class UiMain  extends Application {
 		UiMain.primaryStage = primaryStage;
 		UiMain.primaryStage.setTitle("Cryptography App");
 		showMainView();
-		showLogin();
 	}
 
 	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/MainView.fxml"));
+		loader.setLocation(getClass().getResource("../../resources/MainWindow.fxml"));
 		mainLayout = loader.load();
 		Scene scene = new Scene (mainLayout,500,500);
 		primaryStage.setScene(scene);
