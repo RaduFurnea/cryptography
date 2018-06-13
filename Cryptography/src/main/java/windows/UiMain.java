@@ -1,4 +1,4 @@
-package main.java.ui;
+package main.java.windows;
 
 import java.io.IOException;
 
