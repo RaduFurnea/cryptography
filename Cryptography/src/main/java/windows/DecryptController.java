@@ -1,15 +1,15 @@
-package main.java.ui;
+package main.java.windows;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import main.java.crypto.Crypto;
+import main.java.CryptographyServices;
 
-public class DecryptWindowController {
+public class DecryptController {
 	
 	private static Stage fileStage;
 	
@@ -29,7 +29,7 @@ public class DecryptWindowController {
 	private void onButtonClick(ActionEvent event) throws Exception {
 		try {
 		if(event.getSource() == choosePath){
-			path = new KeysWindowController().start(fileStage);
+			path = new KeyGeneratorController().start(fileStage);
 			if(path != null)
 				setPath(path);			
 			else{
@@ -49,10 +49,7 @@ public class DecryptWindowController {
 				alert.showAndWait();
 			}
 			else { 
-				if(decryptedName.getText().equals(null))
-					fileName = "decryptedFile";
-				else fileName = decryptedName.getText();
-				if(MainWindowController.path.equals(null)) {
+				if(MainWindow.path.equals(null)) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("No file!");
 					alert.setHeaderText("No file selected!");
@@ -60,14 +57,16 @@ public class DecryptWindowController {
 					alert.showAndWait();
 				}
 				else {
-				new Crypto(UiMain.password).decryptFile(MainWindowController.path, path.concat(fileName));
+				new CryptographyServices(Ui.password).performCrypto(MainWindow.path, path, false);
 				Stage stage = (Stage) decrypt.getScene().getWindow();
 				stage.close();
 					}
 				}
 		}
 		}
-		catch(Exception e) {}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void setPath(String string) {

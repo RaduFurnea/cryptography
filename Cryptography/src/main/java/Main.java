@@ -1,8 +1,6 @@
 package main.java;
 
-
-import main.java.ui.UiMain;
-
+import main.java.windows.Ui;
 
 @SuppressWarnings("unused")
 public class Main{
@@ -10,7 +8,7 @@ public class Main{
 	public static void main(String[] args) {
 
  
-		UiMain.start(args);
+		Ui.start(args);
 
 	}
 }

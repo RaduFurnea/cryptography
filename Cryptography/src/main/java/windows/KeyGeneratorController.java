@@ -2,19 +2,18 @@ package main.java.windows;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import main.java.crypto.Crypto;
+import main.java.CryptographyServices;
 
-public class KeysWindowController {
+public class KeyGeneratorController {
 	
 	
 	private static Stage directoryStage;
@@ -60,10 +59,18 @@ public class KeysWindowController {
 					publicFileName = "yourPublicKey"; //default file name
 				else publicFileName = publicName.getText();
 				
+				if(!privatePathString.endsWith("\\") || privatePathString.endsWith("/")) {
+					privatePathString += "\\";
+				}
+				
+				if(!publicPathString.endsWith("\\") || publicPathString.endsWith("/")) {
+					publicPathString += File.separator;
+				}
+				
 				privatePathString = privatePathString.concat(privateFileName);
 				publicPathString = publicPathString.concat(publicFileName);
 				
-				new Crypto(UiMain.password).generateKeys(publicPathString, privatePathString); 
+				new CryptographyServices(Ui.password).generateKeys(publicPathString, privatePathString); 
 				
 				Stage stage = (Stage) submit.getScene().getWindow();
 				stage.close();
@@ -95,9 +102,19 @@ public class KeysWindowController {
 	}
 	
 	public String start(final Stage stage) throws IOException {
-		final DirectoryChooser directoryChooser = new DirectoryChooser();
-		File file = directoryChooser.showDialog(stage);
+		final FileChooser fileChooser = new FileChooser();
 		
-		return file.getAbsolutePath();
+		File file = fileChooser.showSaveDialog(stage);
+		if (file != null) {
+			return file.getAbsolutePath();
+				
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("File not found");
+			alert.showAndWait();
+		}
+		return "";
 	}
 }

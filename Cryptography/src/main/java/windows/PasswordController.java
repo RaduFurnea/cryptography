@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 //For the start-up password verification
 
-public class PassEntryController {
+public class PasswordController {
 
 	@FXML private Button submit;
 	
@@ -26,7 +26,7 @@ public class PassEntryController {
 	}
 	
 	private void setPass(String pass) {
-		UiMain.password = pass;
+		Ui.password = pass;
 		Stage stage = (Stage) submit.getScene().getWindow();
 		stage.close();
 	}
