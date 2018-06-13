@@ -90,7 +90,7 @@ public class Crypto {
 		return sigToVerify;
 	}
 
-	public byte[] encrypt(byte[] bytesToEncypt) throws Exception {
+	private byte[] encrypt(byte[] bytesToEncypt) throws Exception {
 		Key aesKey = deriveAesKey();
 		Cipher cipher = Cipher.getInstance("AES");
 
@@ -99,13 +99,21 @@ public class Crypto {
 		return cipher.doFinal(bytesToEncypt);
 	}
 
-	public byte[] decrypt(byte[] bytesToDecrypt) throws Exception {
+	private byte[] decrypt(byte[] bytesToDecrypt) throws Exception {
 		Key aesKey = deriveAesKey();
 		Cipher cipher = Cipher.getInstance("AES");
 
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 
 		return cipher.doFinal(bytesToDecrypt);
+	}
+	
+	public void encryptFile(String fileToEncrypt, String outputPath) throws Exception {
+		writeBytesToDisk(encrypt(getFileAsBytes(fileToEncrypt)), outputPath);
+	}
+	
+	public void decryptFile(String fileToDecrypt, String outputPath) throws Exception { 
+		writeBytesToDisk(decrypt(getFileAsBytes(fileToDecrypt)), outputPath);
 	}
 
 	public void generateKeys(String publicKeyPath, String privateKeyPath) throws Exception {
@@ -121,7 +129,6 @@ public class Crypto {
 	}
 
 	public void signDocument(String privateKeyPath, String filePath, String pathToSigniature) throws Exception {
-
 		PrivateKey key = (PrivateKey) readKeyFromFs(privateKeyPath, true);
 		Signature dsa = Signature.getInstance("SHA256withDSA");
 
