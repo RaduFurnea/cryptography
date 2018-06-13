@@ -7,26 +7,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="305.0" maxWidth="290.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.ui.MainWindowController">
+<AnchorPane maxHeight="457.0" maxWidth="290.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="413.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.ui.MainWindowController">
    <children>
       <Button fx:id="loadFile" layoutX="175.0" layoutY="40.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Load File" />
-      <Button fx:id="createKey" layoutX="175.0" layoutY="123.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Create" />
-      <Button fx:id="generateKey" layoutX="174.0" layoutY="163.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Generate" />
-      <Button fx:id="sign" layoutX="174.0" layoutY="217.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Sign" />
-      <Button fx:id="verify" layoutX="174.0" layoutY="257.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="1.0" prefWidth="99.0" text="Verify" />
+      <Button fx:id="generateKey" layoutX="176.0" layoutY="123.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Generate" />
+      <Button fx:id="sign" layoutX="174.0" layoutY="302.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Sign" />
+      <Button fx:id="verify" layoutX="174.0" layoutY="338.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="1.0" prefWidth="99.0" text="Verify" />
       <Label fx:id="actions" layoutX="15.0" layoutY="7.0" prefHeight="25.0" prefWidth="65.0" text="Actions">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Line endX="300.0" layoutX="101.0" layoutY="31.0" startX="-100.0" strokeWidth="0.2" />
-      <Label layoutX="14.0" layoutY="44.0" text="Load the file to be encrypted:" />
+      <Line endX="300.0" layoutX="101.0" layoutY="31.0" startX="-100.0" strokeWidth="0.6" />
+      <Label layoutX="14.0" layoutY="44.0" text="Load the file:" />
       <Label layoutX="14.0" layoutY="84.0" text="File location:" />
       <Line endX="300.0" layoutX="90.0" layoutY="114.0" startX="-100.0" strokeWidth="0.2" />
-      <Label layoutX="15.0" layoutY="127.0" text="Create Key:" />
-      <Label layoutX="14.0" layoutY="167.0" text="Generate Key:" />
-      <Label layoutX="17.0" layoutY="221.0" text="Digital Signature:" />
-      <Label layoutX="17.0" layoutY="261.0" text="Signature Verification:" />
-      <Line endX="300.0" layoutX="100.0" layoutY="203.0" startX="-100.0" strokeWidth="0.2" />
+      <Label layoutX="14.0" layoutY="127.0" text="Generate Keys:" />
+      <Label layoutX="14.0" layoutY="306.0" text="Digital Signature:" />
+      <Label layoutX="14.0" layoutY="342.0" text="Signature Verification:" />
+      <Line endX="300.0" layoutX="101.0" layoutY="158.0" startX="-100.0" strokeWidth="0.2" />
       <TextField fx:id="filePath" editable="false" layoutX="84.0" layoutY="80.0" prefHeight="25.0" prefWidth="192.0" promptText="File location..." />
+      <Label layoutX="14.0" layoutY="172.0" text="Private Key for Signature:" />
+      <Button fx:id="loadPrivate" layoutX="174.0" layoutY="168.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Load Private" />
+      <Label layoutX="14.0" layoutY="211.0" text="Public Key for Signature:" />
+      <Button fx:id="loadPublic" layoutX="174.0" layoutY="207.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Load Public" />
+      <Label layoutX="13.0" layoutY="252.0" text="Your Signature:" />
+      <Button fx:id="loadSignature" layoutX="174.0" layoutY="248.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Load Signature" />
+      <Line endX="300.0" layoutX="80.0" layoutY="287.0" startX="-100.0" strokeWidth="0.2" />
    </children>
 </AnchorPane>
