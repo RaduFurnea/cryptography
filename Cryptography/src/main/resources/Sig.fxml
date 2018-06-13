@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="153.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.fx.SigController">
+   <children>
+      <Button fx:id="choosePath" layoutX="10.0" layoutY="82.0" mnemonicParsing="false" onAction="#onButtonClick" text="Choose Path" />
+      <Label layoutX="10.0" layoutY="51.0" text="You chose:" />
+      <TextField fx:id="signatureTextPath" editable="false" layoutX="69.0" layoutY="47.0" prefHeight="25.0" prefWidth="206.0" promptText="Signature File Path..." />
+      <Button fx:id="sign" layoutX="192.0" layoutY="82.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="83.0" text="Sign" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="332.0" maxWidth="607.0" minHeight="138.0" minWidth="302.0" prefHeight="138.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.fx.KeysController">
+   <children>
+      <Button fx:id="privatePath" layoutX="197.0" layoutY="49.0" mnemonicParsing="false" onAction="#onButtonClick" text="Choose Path" />
+      <Button fx:id="publicPath" layoutX="510.0" layoutY="49.0" mnemonicParsing="false" onAction="#onButtonClick" text="Choose Path" />
+      <Label layoutX="14.0" layoutY="53.0" text="Private Key:" />
+      <Label fx:id="privateTextPath" layoutX="16.0" layoutY="81.0" prefHeight="17.0" prefWidth="264.0" />
+      <Label layoutX="310.0" layoutY="53.0" text="Public Key:" />
+      <Label fx:id="publicTextPath" layoutX="310.0" layoutY="81.0" prefHeight="17.0" prefWidth="264.0" />
+      <Button fx:id="submit" layoutX="375.0" layoutY="104.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="206.0" text="Submit" />
+   </children>
+</AnchorPane>

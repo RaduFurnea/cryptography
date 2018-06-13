@@ -1,12 +1,12 @@
 package main.java;
 
-import main.java.fx.UiMain;
+import main.java.fx.GUIMain;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		UiMain.start(args);
+		GUIMain.start(args);
 
 	}
 }

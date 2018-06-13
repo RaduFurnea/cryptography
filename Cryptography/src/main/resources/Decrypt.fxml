@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="153.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.fx.DecrController">
+   <children>
+      <Button fx:id="choosePath" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#onButtonClick" text="Choose Path" />
+      <Label layoutX="10.0" layoutY="39.0" text="You chose:" />
+      <TextField fx:id="decryptedTextPath" editable="false" layoutX="69.0" layoutY="35.0" prefHeight="25.0" prefWidth="206.0" promptText="Decrypted File Path..." />
+      <Button fx:id="decrypt" layoutX="188.0" layoutY="89.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="83.0" text="Decrypt" />
+   </children>
+</AnchorPane>

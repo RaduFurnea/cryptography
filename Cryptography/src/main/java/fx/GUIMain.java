@@ -10,46 +10,46 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class UiMain extends Application {
+public class GUIMain extends Application {
 	
 	public static String password;
 	
 	private static Stage primaryStage;
-	private static Stage entryPassStage;
+	private static Stage passStage;
 
 	private static AnchorPane mainLayout;
-	private static AnchorPane entryPassLayout;
+	private static AnchorPane passLayout;
 	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		UiMain.primaryStage = primaryStage;
-		UiMain.primaryStage.setTitle("Cryptography App");
+		GUIMain.primaryStage = primaryStage;
+		GUIMain.primaryStage.setTitle("Cryptography App");
 		showMainView();
 		showEntryPassStage();
 	}
 
 	private void showMainView() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../../resources/MainWindow.fxml"));
+		loader.setLocation(getClass().getResource("../../resources/Main.fxml"));
 		mainLayout = loader.load();
-		Scene scene = new Scene (mainLayout,279,432);
+		Scene scene = new Scene (mainLayout);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 	
 	private void showEntryPassStage() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../../resources/PassEntryWindow.fxml"));
-		entryPassLayout = loader.load();
-		entryPassStage = new Stage();
-		entryPassStage.setTitle("Insert Password");
-		entryPassStage.initModality(Modality.WINDOW_MODAL);
-		entryPassStage.initOwner(primaryStage);
-		Scene scene = new Scene(entryPassLayout,275,91);
-		
-		entryPassStage.setScene(scene);
-		entryPassStage.show();
+		loader.setLocation(getClass().getResource("../../resources/Pass.fxml"));
+		passLayout = loader.load();
+		passStage = new Stage();
+		passStage.setTitle("Insert Password");
+		passStage.initModality(Modality.WINDOW_MODAL);
+		passStage.initOwner(primaryStage);
+		Scene scene = new Scene(passLayout);
+	
+		passStage.setScene(scene);
+		passStage.show();
 	}
 
 

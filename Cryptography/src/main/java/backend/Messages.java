@@ -11,6 +11,7 @@ import java.security.Signature;
 import java.security.spec.EncodedKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
@@ -31,17 +32,20 @@ public class Messages implements Secure {
 
 	public Messages(String password) throws Exception {
 		this.pass = password;
+		if(password == null) {
+			this.pass= "default";
+		}
 		this.factory = KeyFactory.getInstance("DSA");
 	}
 
 	private PrivateKey readPrivateKey(String keyLoc) throws Exception {
 		byte[] key = decrypt(Utils.getFileAsBytes(keyLoc));
-		EncodedKeySpec keySpec = new X509EncodedKeySpec(key);
+		EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(key);
 		return factory.generatePrivate(keySpec);
 	}
 
 	private PublicKey readPublicKey(String keyLoc) throws Exception {
-		byte[] key = decrypt(Utils.getFileAsBytes(keyLoc));
+		byte[] key = Utils.getFileAsBytes(keyLoc);
 		EncodedKeySpec keySpec = new X509EncodedKeySpec(key);
 		return factory.generatePublic(keySpec);
 	}
