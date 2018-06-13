@@ -1,13 +1,14 @@
 package main.java;
 
 import main.java.crypto.Crypto;
+import main.java.ui.UiMain;
 
 public class Main{
 	
 	public static void main(String[] args) {
 
-//		UiMain.start(args);
-		try {
+		UiMain.start(args);
+		/*try {
 			Crypto c = new Crypto("123465");
 			c.generateKeys("public", "private");
 			c.signDocument("private", "file", "singiature");
@@ -18,6 +19,6 @@ public class Main{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

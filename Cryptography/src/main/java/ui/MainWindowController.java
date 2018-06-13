@@ -29,6 +29,10 @@ public class MainWindowController {
 	private static Stage fileStage;
 	private static AnchorPane keysLayout;
 	private static Stage keysStage;
+	private static Stage encryptStage;
+	private static AnchorPane encryptLayout;
+	private static Stage decryptStage;
+	private static AnchorPane decryptLayout;
 	
 	public static String path;
 
@@ -45,7 +49,33 @@ public class MainWindowController {
 		keysStage.setScene(scene);
 		keysStage.show();
 	}
-
+	
+	public void showEncryptStage() throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../../resources/EncryptWindow.fxml"));
+		encryptLayout = loader.load();
+		encryptStage = new Stage();
+		encryptStage.setTitle("Select Path for Encrypted File");
+		encryptStage.initModality(Modality.WINDOW_MODAL);
+		Scene scene = new Scene(encryptLayout,285,153);
+		
+		encryptStage.setScene(scene);
+		encryptStage.show();
+	}
+	
+	public void showDecryptStage() throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../../resources/DecryptWindow.fxml"));
+		decryptLayout = loader.load();
+		decryptStage = new Stage();
+		decryptStage.setTitle("Select Paths for Decrypted File");
+		decryptStage.initModality(Modality.WINDOW_MODAL);
+		Scene scene = new Scene(decryptLayout,285,153);
+		
+		decryptStage.setScene(scene);
+		decryptStage.show();
+	}
+	
 	@FXML private Button loadFile;
 		
 	@FXML private Button generateKey;
@@ -64,16 +94,37 @@ public class MainWindowController {
 	
 	@FXML private Button loadSignature;
 	
+	@FXML private Button encrypt;
+	
+	@FXML private Button decrypt;
+	
+	public void initialize() {
+		encrypt.setDisable(true);
+		decrypt.setDisable(true);
+	}
+	
 	@FXML
 	public void onButtonClick(ActionEvent event) throws Exception {
 		if(event.getSource()==loadFile) {
 			mainFile = start(fileStage, true);
+			
+			if(!path.equals(null))
+			{
+			encrypt.setDisable(false);
+			decrypt.setDisable(false);
+			}
 		}
 		if(event.getSource()==generateKey) {
 			showKeysStage();
 		}
 		if(event.getSource()==loadPrivate) {
 			privateF = start(fileStage, false);
+		}
+		if(event.getSource()==encrypt) {
+			showEncryptStage();
+		}
+		if(event.getSource()==decrypt) {
+			showDecryptStage();
 		}
 		if(event.getSource()==loadPublic) {
 			publicF = start(fileStage, false);
@@ -93,7 +144,6 @@ public class MainWindowController {
 				new Crypto(UiMain.password).signDocument(privateF.getPath(), mainFile.getPath(), signatureF.getPath()); 
 		}
 		if(event.getSource()==verify) {
-			//System.out.println(publicF.getAbsolutePath());
 			if(publicF.getPath().equals(null) || mainFile.getPath().equals(null)) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("No files.");;
@@ -118,7 +168,6 @@ public class MainWindowController {
 				}
 			}
 		}
-
 	}
 	
 	private void setPath(String string) { //sets text on TextField for display
@@ -129,9 +178,11 @@ public class MainWindowController {
 		final FileChooser fileChooser = new FileChooser();
 		File file = fileChooser.showOpenDialog(stage);
 		if (file != null) {
-			System.out.println(file.getPath());
-			if(b)
+			if(b) {
+				path = file.getAbsolutePath();
 				setPath(file.getPath());
+			}
+				
 		}
 		else {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -139,6 +190,7 @@ public class MainWindowController {
 			alert.setHeaderText("No file selected!");
 			alert.setContentText("Please select a valid file.");
 			alert.showAndWait();
+			return null;
 		}
 		return file;	
 	}	

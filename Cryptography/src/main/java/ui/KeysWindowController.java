@@ -16,6 +16,7 @@ import main.java.crypto.Crypto;
 
 public class KeysWindowController {
 	
+	
 	private static Stage directoryStage;
 	
 	String privatePathString;
@@ -62,6 +63,9 @@ public class KeysWindowController {
 				publicPathString = publicPathString.concat(publicFileName);
 				
 				new Crypto(UiMain.password).generateKeys(publicPathString, privatePathString); 
+				
+				Stage stage = (Stage) submit.getScene().getWindow();
+				stage.close();
 			}
 			else {
 				Alert alert = new Alert(AlertType.WARNING);
