@@ -1,4 +1,5 @@
-package main.java.ui;
+package main.java.fx;
+
 
 import java.io.IOException;
 
@@ -9,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import main.java.crypto.Crypto;
+import main.java.backend.Messages;
 
 public class EncryptWindowController {
 	
@@ -62,7 +63,7 @@ public class EncryptWindowController {
 					alert.showAndWait();
 				}
 				else {
-				new Crypto(UiMain.password).encryptFile(MainWindowController.path, path.concat(fileName));
+				new Messages(UiMain.password).performDecrypt(MainWindowController.path, path.concat(fileName));
 				Stage stage = (Stage) encrypt.getScene().getWindow();
 				stage.close();
 					}
