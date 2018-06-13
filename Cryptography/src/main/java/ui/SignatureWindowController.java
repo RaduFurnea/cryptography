@@ -1,7 +1,5 @@
 package main.java.ui;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,7 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import main.java.crypto.Crypto;
 
-public class EncryptWindowController {
+public class SignatureWindowController {
 
 	private static Stage fileStage;
 
@@ -22,13 +20,13 @@ public class EncryptWindowController {
 	private Button choosePath;
 
 	@FXML
-	private Button encrypt;
+	private Button sign;
 
 	@FXML
-	private TextField encryptedName;
+	private TextField signatureName;
 
 	@FXML
-	private TextField encryptedTextPath;
+	private TextField signatureTextPath;
 
 	@FXML
 	private void onButtonClick(ActionEvent event) throws Exception {
@@ -45,7 +43,7 @@ public class EncryptWindowController {
 					alert.showAndWait();
 				}
 			}
-			if (event.getSource() == encrypt) {
+			if (event.getSource() == sign) {
 				if (path.equals(null)) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("No directory!");
@@ -53,10 +51,10 @@ public class EncryptWindowController {
 					alert.setContentText("Please select a valid directory!");
 					alert.showAndWait();
 				} else {
-					if (encryptedName.getText().equals(null))
-						fileName = "encryptedFile";
+					if (signatureName.getText().equals(null))
+						fileName = "signature";
 					else
-						fileName = encryptedName.getText();
+						fileName = signatureName.getText();
 					if (MainWindowController.path.equals(null)) {
 						Alert alert = new Alert(AlertType.WARNING);
 						alert.setTitle("No file!");
@@ -64,8 +62,9 @@ public class EncryptWindowController {
 						alert.setContentText("Please select a valid file!");
 						alert.showAndWait();
 					} else {
-						new Crypto(UiMain.password).encryptFile(MainWindowController.path, path.concat(fileName));
-						Stage stage = (Stage) encrypt.getScene().getWindow();
+						new Crypto(UiMain.password).signDocument(MainWindowController.privateKeyPath,
+								MainWindowController.path, path.concat(fileName));
+						Stage stage = (Stage) sign.getScene().getWindow();
 						stage.close();
 					}
 				}
@@ -75,7 +74,7 @@ public class EncryptWindowController {
 	}
 
 	private void setPath(String string) {
-		encryptedTextPath.setText(string);
+		signatureTextPath.setText(string);
 	}
 
 }

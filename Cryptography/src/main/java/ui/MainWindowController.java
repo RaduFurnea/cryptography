@@ -33,8 +33,11 @@ public class MainWindowController {
 	private static AnchorPane encryptLayout;
 	private static Stage decryptStage;
 	private static AnchorPane decryptLayout;
+	private static Stage signaturePathStage;
+	private static AnchorPane signaturePathLayout;
 	
 	public static String path;
+	public static String privateKeyPath;
 
 	
 	public void showKeysStage() throws IOException{
@@ -76,18 +79,18 @@ public class MainWindowController {
 		decryptStage.show();
 	}
 	
-	/*public void showDecryptStage() throws IOException{
+	public void signaturePathStage() throws IOException{
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("../../resources/DecryptWindow.fxml"));
-		decryptLayout = loader.load();
-		decryptStage = new Stage();
-		decryptStage.setTitle("Select Paths for Decrypted File");
-		decryptStage.initModality(Modality.WINDOW_MODAL);
-		Scene scene = new Scene(decryptLayout,285,153);
+		loader.setLocation(getClass().getResource("../../resources/SignaturePathWindow.fxml"));
+		signaturePathLayout = loader.load();
+		signaturePathStage = new Stage();
+		signaturePathStage.setTitle("Select Path for Signature");
+		signaturePathStage.initModality(Modality.WINDOW_MODAL);
+		Scene scene = new Scene(signaturePathLayout,285,153);
 		
-		decryptStage.setScene(scene);
-		decryptStage.show();
-	}*/
+		signaturePathStage.setScene(scene);
+		signaturePathStage.show();
+	}
 	
 	@FXML private Button loadFile;
 		
@@ -111,6 +114,12 @@ public class MainWindowController {
 	
 	@FXML private Button decrypt;
 	
+	@FXML private Label sigFileName;
+	
+	@FXML private Label pvtKeyPath;
+	
+	@FXML private Label pblKeyPath;
+	
 	public void initialize() {
 		encrypt.setDisable(true);
 		decrypt.setDisable(true);
@@ -121,12 +130,14 @@ public class MainWindowController {
 	@FXML 
 	private void verifyAdded() {
 		try {
-		if(!mainFile.getPath().equals(null) && !privateF.getPath().equals(null))
+		if(mainFile != null && privateF != null)
 			sign.setDisable(false);
-		if(!mainFile.getPath().equals(null) && !publicF.getPath().equals(null) && !signatureF.getPath().equals(null))
+		if(mainFile != null && publicF != null && signatureF != null)
 			verify.setDisable(false);
 		}
-		catch(Exception e) {}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 	}
@@ -150,6 +161,8 @@ public class MainWindowController {
 		if(event.getSource()==loadPrivate) {
 			privateF = start(fileStage, false);
 			verifyAdded();
+			privateKeyPath = privateF.getPath();
+			pvtKeyPath.setText(privateF.getPath());
 		}
 		if(event.getSource()==encrypt) {
 			showEncryptStage();
@@ -160,22 +173,15 @@ public class MainWindowController {
 		if(event.getSource()==loadPublic) {
 			publicF = start(fileStage, false);
 			verifyAdded();
+			pblKeyPath.setText(publicF.getPath());
 		}
 		if(event.getSource()==loadSignature){
 			signatureF = start(fileStage, false);
 			verifyAdded();
+			sigFileName.setText(signatureF.getPath());
 		}
 		if(event.getSource()==sign) {
-			
-			if(privateF == null || mainFile == null || signatureF == null) {
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("No files.");
-				alert.setHeaderText("Some files not selected.");
-				alert.setContentText("Please select all the files needed.");
-				alert.showAndWait();
-			}
-			else 
-				new Crypto(UiMain.password).signDocument(privateF.getPath(), mainFile.getPath(), signatureF.getPath()); 
+			signaturePathStage(); 
 		}
 		if(event.getSource()==verify) {
 			if(publicF.getPath().equals(null) || mainFile.getPath().equals(null)) {
@@ -189,15 +195,15 @@ public class MainWindowController {
 				if(new Crypto(UiMain.password).verifySigniature(publicF.getPath(), mainFile.getPath(), signatureF.getPath())){
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Verification Complete");
-					alert.setHeaderText("null");
-					alert.setContentText("The verification test is positive."); //exprimare corecta?
+					alert.setHeaderText(null);
+					alert.setContentText("File is valid."); //exprimare corecta?
 					alert.showAndWait();
 				}
 				else {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Verification Complete");
-					alert.setHeaderText("null");
-					alert.setContentText("The verification test is negative."); //exprimare corecta?
+					alert.setHeaderText(null);
+					alert.setContentText("File was altered."); //exprimare corecta?
 					alert.showAndWait();
 				}
 			}

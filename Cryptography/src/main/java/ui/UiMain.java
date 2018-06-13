@@ -33,7 +33,7 @@ public class UiMain extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("../../resources/MainWindow.fxml"));
 		mainLayout = loader.load();
-		Scene scene = new Scene (mainLayout,279,432);
+		Scene scene = new Scene(mainLayout);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
