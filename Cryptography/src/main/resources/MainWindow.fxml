@@ -7,11 +7,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<<<<<<< HEAD
-<AnchorPane maxHeight="488.0" maxWidth="419.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.ui.MainWindowController">
-=======
+
 <AnchorPane maxHeight="305.0" maxWidth="290.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.fx.MainWindowController">
->>>>>>> Created v2 branch
+
    <children>
       <Button fx:id="loadFile" layoutX="173.0" layoutY="36.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Load File" />
       <Button fx:id="generateKey" layoutX="173.0" layoutY="123.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="25.0" prefWidth="99.0" text="Generate" />
