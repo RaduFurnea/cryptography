@@ -29,6 +29,7 @@ public class EncryptWindowController {
 	
 	@FXML
 	private void onButtonClick(ActionEvent event) throws Exception {
+		try {
 		if(event.getSource() == choosePath){
 			path = new KeysWindowController().start(fileStage);
 			if(path != null)
@@ -67,6 +68,8 @@ public class EncryptWindowController {
 					}
 				}
 		}
+		}
+		catch(Exception e) {}
 	}
 	
 	private void setPath(String string) {

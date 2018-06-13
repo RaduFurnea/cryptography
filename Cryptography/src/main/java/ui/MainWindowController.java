@@ -76,6 +76,19 @@ public class MainWindowController {
 		decryptStage.show();
 	}
 	
+	/*public void showDecryptStage() throws IOException{
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("../../resources/DecryptWindow.fxml"));
+		decryptLayout = loader.load();
+		decryptStage = new Stage();
+		decryptStage.setTitle("Select Paths for Decrypted File");
+		decryptStage.initModality(Modality.WINDOW_MODAL);
+		Scene scene = new Scene(decryptLayout,285,153);
+		
+		decryptStage.setScene(scene);
+		decryptStage.show();
+	}*/
+	
 	@FXML private Button loadFile;
 		
 	@FXML private Button generateKey;
@@ -101,10 +114,26 @@ public class MainWindowController {
 	public void initialize() {
 		encrypt.setDisable(true);
 		decrypt.setDisable(true);
+		sign.setDisable(true);
+		verify.setDisable(true);
+	}
+	
+	@FXML 
+	private void verifyAdded() {
+		try {
+		if(!mainFile.getPath().equals(null) && !privateF.getPath().equals(null))
+			sign.setDisable(false);
+		if(!mainFile.getPath().equals(null) && !publicF.getPath().equals(null) && !signatureF.getPath().equals(null))
+			verify.setDisable(false);
+		}
+		catch(Exception e) {}
+		
+		
 	}
 	
 	@FXML
 	public void onButtonClick(ActionEvent event) throws Exception {
+		try {
 		if(event.getSource()==loadFile) {
 			mainFile = start(fileStage, true);
 			
@@ -113,12 +142,14 @@ public class MainWindowController {
 			encrypt.setDisable(false);
 			decrypt.setDisable(false);
 			}
+			verifyAdded();
 		}
 		if(event.getSource()==generateKey) {
 			showKeysStage();
 		}
 		if(event.getSource()==loadPrivate) {
 			privateF = start(fileStage, false);
+			verifyAdded();
 		}
 		if(event.getSource()==encrypt) {
 			showEncryptStage();
@@ -128,11 +159,14 @@ public class MainWindowController {
 		}
 		if(event.getSource()==loadPublic) {
 			publicF = start(fileStage, false);
+			verifyAdded();
 		}
 		if(event.getSource()==loadSignature){
 			signatureF = start(fileStage, false);
+			verifyAdded();
 		}
 		if(event.getSource()==sign) {
+			
 			if(privateF == null || mainFile == null || signatureF == null) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("No files.");
@@ -168,6 +202,8 @@ public class MainWindowController {
 				}
 			}
 		}
+		}
+		catch(Exception e) {}
 	}
 	
 	private void setPath(String string) { //sets text on TextField for display

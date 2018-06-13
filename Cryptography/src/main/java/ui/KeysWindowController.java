@@ -41,6 +41,7 @@ public class KeysWindowController {
 	
 	@FXML
 	public void onButtonClick(ActionEvent event) throws Exception {
+		try {
 		if(event.getSource()==privatePath) {
 			privatePathString = start(directoryStage);
 			setPrivatePath(privatePathString);
@@ -52,11 +53,11 @@ public class KeysWindowController {
 		if(event.getSource()==submit)
 			if(publicPathString != null && privatePathString != null) {
 				if (privateName.getText().equals(""))
-					privateFileName = "yourPrivateKey";
+					privateFileName = "yourPrivateKey"; //default file name
 				else privateFileName = privateName.getText();
 				
 				if (publicName.getText().equals(""))
-					publicFileName = "yourPublicKey";
+					publicFileName = "yourPublicKey"; //default file name
 				else publicFileName = publicName.getText();
 				
 				privatePathString = privatePathString.concat(privateFileName);
@@ -74,6 +75,15 @@ public class KeysWindowController {
 				alert.setContentText("One or both directories haven't been selected!");
 				alert.showAndWait();
 			}
+		}
+		catch (Exception e)
+		{
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Error");
+			alert.showAndWait();
+		}
 	}
 	
 	private void setPrivatePath(String string) { //sets text on TextField for display

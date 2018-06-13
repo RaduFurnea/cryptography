@@ -27,6 +27,7 @@ public class DecryptWindowController {
 	
 	@FXML
 	private void onButtonClick(ActionEvent event) throws Exception {
+		try {
 		if(event.getSource() == choosePath){
 			path = new KeysWindowController().start(fileStage);
 			if(path != null)
@@ -65,6 +66,8 @@ public class DecryptWindowController {
 					}
 				}
 		}
+		}
+		catch(Exception e) {}
 	}
 	
 	private void setPath(String string) {

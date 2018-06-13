@@ -138,7 +138,7 @@ public class Crypto {
 
 		/* Update and sign the data */
 		dsa.update(fileBytes);
-		this.writeBytesToDisk(dsa.sign(), "singiature");
+		this.writeBytesToDisk(dsa.sign(), pathToSigniature);
 	}
 
 	public boolean verifySigniature(String keyPath, String filePath, String pathToSigniature) throws Exception {
