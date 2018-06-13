@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import main.java.backend.Messages;
 import main.java.crypto.Crypto;
 
 public class SignatureWindowController {
@@ -62,7 +63,7 @@ public class SignatureWindowController {
 						alert.setContentText("Please select a valid file!");
 						alert.showAndWait();
 					} else {
-						new Crypto(UiMain.password).signDocument(MainWindowController.privateKeyPath,
+						new Messages(UiMain.password).signDocument(MainWindowController.privateKeyPath,
 								MainWindowController.path, path.concat(fileName));
 						Stage stage = (Stage) sign.getScene().getWindow();
 						stage.close();

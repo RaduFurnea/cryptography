@@ -34,6 +34,7 @@ public class MainWindowController {
 	private static AnchorPane decryptLayout;
 
 	public static String path;
+	public static String privateKeyPath;
 
 	public void showKeysStage() throws IOException {
 		FXMLLoader loader = new FXMLLoader();
